@@ -29,7 +29,11 @@ as it requires the robot to control its intermediate joints to make sure the gri
  1. Deep reinforcement learning is much more difficult to implement and make it work. The reward assignment usually does not work as I expected, resulting in slow learning or not learning at all.
  Sophisticated reward system, and trial-and-error are needed.
  2. Simulation Environment is crucial and very hard to implement. Although the environment is already set up in this project, effort is worthy to revisit the source code to figure it out how the environment
+<<<<<<< HEAD
  is established. This project is especially inspiring as it is integrated with PyTorch implemented in C, Gazebo, and deep reinforcement learning together. This project is excellent example to understand a complicated project.
+=======
+ is established. This project is especially inspiring as it is integrated with PyTorch in C, Gazebo, and deep reinforcement learning together. This project is excellent example to understand a complicated project.
+>>>>>>> f6de0d2f08a05d1d4e960df1c5818022486604e3
   
 
 ### ArmPlugin.cpp file completion:
@@ -45,4 +49,6 @@ Before starting training, the ArmPlugin.cpp has to be implemented under the guid
 ### Reward System Implementation:
 
 
+fdfsfsafdsfafdsafdsfasdaf
 
+fdafdsa
