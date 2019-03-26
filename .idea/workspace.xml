@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d6c207-875b-4d54-a4eb-f41bc3c77acc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +31,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="218">
-                <caret line="31" column="99" selection-start-line="31" selection-start-column="99" selection-end-line="31" selection-end-column="99" />
+              <first_editor relative-caret-position="448">
+                <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
               </first_editor>
               <second_editor />
             </state>
@@ -41,15 +42,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gazebo/ArmPlugin.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="986">
               <caret line="145" column="13" selection-start-line="145" selection-start-column="4" selection-end-line="145" selection-end-column="13" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/images/1.png">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -65,7 +61,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="992" />
+    <option name="x" value="65" />
     <option name="y" value="-4" />
     <option name="width" value="928" />
     <option name="height" value="1084" />
@@ -118,26 +114,26 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553628661477</updated>
-      <workItem from="1553628663186" duration="6417000" />
+      <workItem from="1553628663186" duration="8209000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6417000" />
+    <option name="totallyTimeSpent" value="8209000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.106688775" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.21882086" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
       <window_info anchor="bottom" id="Pylint" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.32079414" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32079414" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -162,7 +158,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gazebo/ArmPlugin.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="986">
           <caret line="145" column="13" selection-start-line="145" selection-start-column="4" selection-end-line="145" selection-end-column="13" />
         </state>
       </provider>
@@ -170,8 +166,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="218">
-            <caret line="31" column="99" selection-start-line="31" selection-start-column="99" selection-end-line="31" selection-end-column="99" />
+          <first_editor relative-caret-position="448">
+            <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
           </first_editor>
           <second_editor />
         </state>
