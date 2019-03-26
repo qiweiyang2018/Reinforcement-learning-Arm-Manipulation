@@ -46,9 +46,16 @@ Before starting training, the ArmPlugin.cpp has to be implemented under the guid
 My intuition was that reward system is easy to implement. However, reward is a big deal. Take this project for instance, the objective 1 was achieved easily. For objective 2, half reward was given if the arm, but not the gripper, 
 touched the target object, and full reward was given if the gripper touched the target object first. My thinking was that partial reward should give the agent some direction or hint to accomplish the ultimate goal, 
 using the gripper. However, it was hard for the algorithm to converge using this intermediate reward signal. In the end, I had to remove the partial reward signal and only use the full reward instead. Finally, this reward system
-worked well. 
+worked well.   
+  
+The reward system that I found seemed to work: 
 
-#### Positive Rewards:
+For Objective 1, either robot arm or gripper touching the target object counts success, and a full reward is given.  
+
+For Objective 2, only gripper touching the target object counts success, and a full reward is given.  
+![Start](./images/5.png)
+
+##### Positive Rewards:
 
 The positive rewards will encourage the agent to accumulate as much as possible. 
 
@@ -60,7 +67,7 @@ Avoid terminals unless they yield very high reward (terminal state yields more s
 
 Be careful with positive rewards. You need to make sure you don’t have a lot of reward near the terminals unless it’s a massive step function from where you were really close to it.
 
-#### Negative Rewards:
+##### Negative Rewards:
 
 Negative rewards are different. Negative rewards make the agent get done as quickly as possible because you’re constantly losing points when you play this game. That’s an Important distinction as you build these out.
 
@@ -68,4 +75,22 @@ Generally, negative rewards encourage:
 
 Reach a terminal state as quickly as possible to avoid accumulating penalties
 
-testtestste
+### Hyper-Parameters:
+
+##### Objective 1: 
+1) INPUT image size is 64 x 64, to reduce the size of the images;
+2) OPTIMIZER is "RMSDrop";
+3) LEARNING RATE is 0.01, considering the training speed and accuracy. 
+4) REPLAY MEMORY is 10000;
+4) BATCH SIZE is 256;
+5) LSTM SIZE is 256.
+
+##### Objective 2: 
+1) INPUT image size is 64 x 64, to reduce the size of the images;
+2) OPTIMIZER is "Adam";
+3) LEARNING RATE is 0.01, considering the training speed and accuracy. 
+4) REPLAY MEMORY is 10000;
+4) BATCH SIZE is 256;
+5) LSTM SIZE is 256.
+
+

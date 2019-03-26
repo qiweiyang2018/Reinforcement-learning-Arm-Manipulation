@@ -276,19 +276,16 @@ void ArmPlugin::onCollisionMsg(ConstContactsPtr &contacts)
 		
 		//if ((strcmp(contacts->contact(i).collision1().c_str(), COLLISION_ITEM) == 0) || (strcmp(contacts->contact(i).collision2().c_str(), COLLISION_POINT) == 0))
 		//{
-
-            //const bool collisionWithRobot = (strcmp(contacts->contact(i).collision2().c_str(), COLLISION_POINT) == 0);
          // if gripper is the touching point give a larger REWARD_WIN
-      //   if (collisionWithRobot)
 		//rewardHistory = -2;
 	if((strcmp(contacts->contact(i).collision2().c_str(), COLLISION_POINT) == 0))
-	  rewardHistory = REWARD_WIN;
+	       rewardHistory = REWARD_WIN;
 	    //    }
-          else
+     else
             rewardHistory = REWARD_LOSS;
 			
 			
-          	newReward  = true;
+        newReward  = true;
 		endEpisode = true;
 
 			return;
