@@ -67,3 +67,5 @@ Negative rewards are different. Negative rewards make the agent get done as quic
 Generally, negative rewards encourage:
 
 Reach a terminal state as quickly as possible to avoid accumulating penalties
+
+testtestste
