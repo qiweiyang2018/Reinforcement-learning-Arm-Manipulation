@@ -3,16 +3,6 @@ Udacity Project: Deep Reinforcement Learning Arm Manipulation
 
 <center>Qiwei Yang</center>  
 
-At the beginning of the training:
-![Start](./images/1.png)
-
-Result of Object 1, **accuracy > 90%**: 
-![object1](./images/3.png)
-
-Result of Object 2, **accuracy > 80%**: 
-![object2](./images/4.png)
-
-
 ### Introduction: 
 This is my solution to the Udacity Project, Deep RL Arm Manipulation, as part of the Robotics Nano-Program. 
 To me, the goals of this project are to get myself familiar with the core concepts of reinforcement learning, especially the deep
@@ -40,6 +30,23 @@ Before starting training, the ArmPlugin.cpp has to be implemented under the guid
 2. Defining the correct collision/touch. This directly determines the reward that the agent will receive.
 
 3. A DQN agent has to created as the controller. It controls the velocity and position of arms. 
+
+### How does Deep Q-learning Network work in this project?
+
+How image data is used in this project?
+For reinforcement learning algorithms, state-action pair is required. Camera image in this project serves as state. It records each frame of images as one single state, along with the reward and action, in a buffer.
+After the size of the buffer reaches a certain length, in our project 10,000. The stored data in the buffer are shuffled and random sampled to train the DQN. In this way, sequential control problem is converted to CNN,
+or prediction problem. After enough training, for each image, a proper action (which is a series of controls about the joints) followed by an (or approximate) optimal policy will be generated.    
+
+After running the training algorithm for a while, we choose a random selection from all the experiences gathered so far and create an average update for neural 
+network weights which maximizes Q-values (rewards) for all actions taken during those experiences. This way we can teach our neural network to do increase and 
+decrease position at the same time. Since very early experiences of moving the arm to target are not important—because they come from a time where our agent was 
+less experienced, or even a beginner—we only keep track of a fixed number of past experiences and forget the rest. This process is termed experience replay.
+
+Target Q network. 
+
+Rather than updating Q function/value every step, a temporary Q network is used instead. For each training epoch, the temporary Q network is updated to make sure the smooth training process, and then assign the trained
+temporary Q network to replace the actual Q function. 
 
 ### Reward System Implementation:
 
@@ -78,19 +85,43 @@ Reach a terminal state as quickly as possible to avoid accumulating penalties
 ### Hyper-Parameters:
 
 ##### Objective 1: 
-1) INPUT image size is 64 x 64, to reduce the size of the images;
-2) OPTIMIZER is "RMSDrop";
-3) LEARNING RATE is 0.01, considering the training speed and accuracy. 
-4) REPLAY MEMORY is 10000;
-4) BATCH SIZE is 256;
-5) LSTM SIZE is 256.
+1) INPUT image size is 64 x 64, to reduce the size of the images
+2) OPTIMIZER is "RMSDrop"
+3) LEARNING RATE is 0.01, considering the training speed and accuracy 
+4) REPLAY MEMORY: 10000
+4) BATCH SIZE: 256
+5) LSTM SIZE: 32
+6) Reward_win: 20, Reward_loss: -20
 
 ##### Objective 2: 
-1) INPUT image size is 64 x 64, to reduce the size of the images;
-2) OPTIMIZER is "Adam";
-3) LEARNING RATE is 0.01, considering the training speed and accuracy. 
-4) REPLAY MEMORY is 10000;
-4) BATCH SIZE is 256;
-5) LSTM SIZE is 256.
+1) INPUT image size is 64 x 64, to reduce the size of the images
+2) OPTIMIZER is "Adam"
+3) LEARNING RATE is 0.01, considering the training speed and accuracy 
+4) REPLAY MEMORY: 10000
+4) BATCH SIZE: 256
+5) LSTM SIZE: 32
+
+##### Summary: 
+
+From my trials, it seemed that those parameters did not affect the training processes too much. 
+
+### Results:
+
+At the beginning of the training, the arm had no idea what were the proper actions, because there was no "correct" policy at all. Then it had random activities. These activities are important too, since they gave the agent
+the opportunities to explore the environment and collect possible rewards, no matter positive or negative.  
+![Start](./images/1.png)
 
 
+Result of Object 1, **accuracy > 90%**. As mentioned before, this task was easy and it only required the agent to control its base joint. The algorithm converged quickly, within 50 episodes.  
+![object1](./images/3.png)
+
+
+Result of Object 2, **accuracy > 80%**. This task was harder. It took the agent about 140 episodes to reach 60% accuracy in my case. I kept it learning and was doing something else. After I came back, it finally reached 80%+ accuracy.  
+![object2](./images/4.png)
+
+### Future work:
+
+1. Try to complete the challenge task. 
+2. Even I completed the project with required accuracy, there are a lot of areas to improve. For example, reward system definitely can be improved to shorten the training time. How the control commands linked to
+the reward system need exploration too in the this environment. 
+3. I will revisit this project to gain more depth understandings in the simulation environment, the communications between ROS and DQN.  
