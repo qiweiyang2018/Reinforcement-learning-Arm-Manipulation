@@ -82,6 +82,14 @@ Generally, negative rewards encourage:
 
 Reach a terminal state as quickly as possible to avoid accumulating penalties
 
+### The Joint Control:
+
+In this project, joint control is based on position. In another word, the agent receives intermediate rewards based on its distance to the target object. Farther distance, less rewards.
+This mechanism gives the agent directions/hints before it reaches the final state/reward, rather than letting the agent explore the whole states (even in this quite simple project, the states are infinite) all by itself.
+
+However, I found that velocity control is essential too to guarantee a successful episode. Without velocity control, the agent did not know that it should slow down to touch the target object to prevent moving it, which resulted in
+negative rewards. Closer to the target, slower the arm velocity. 
+    
 ### Hyper-Parameters:
 
 ##### Objective 1: 
@@ -92,6 +100,9 @@ Reach a terminal state as quickly as possible to avoid accumulating penalties
 4) BATCH SIZE: 256
 5) LSTM SIZE: 32
 6) Reward_win: 20, Reward_loss: -20
+7) EPS_START 0.7f
+8) EPS_END 0.02
+9) EPS_DECAY 200
 
 ##### Objective 2: 
 1) INPUT image size is 64 x 64, to reduce the size of the images
@@ -100,10 +111,23 @@ Reach a terminal state as quickly as possible to avoid accumulating penalties
 4) REPLAY MEMORY: 10000
 4) BATCH SIZE: 256
 5) LSTM SIZE: 32
+6) Reward_win: 20, Reward_loss: -20
+7) EPS_START 0.7f
+8) EPS_END 0.02
+9) EPS_DECAY 200
 
 ##### Summary: 
 
-From my trials, it seemed that those parameters did not affect the training processes too much. 
+**Epsilon: ** At the beginning of training, a high epsilon (EPS_START = 0.7f) was given to encourage the agent to explore the possible actions under the guide (interim rewards). This parameter means randomly choosing an action even there are "better" actions 
+than others available. This policy is straightforward, because at the start, all state/action pairs are much less likely optimal. Along with training, epsilon decays, and agent is inclined to choose actions that will are more likely to generate
+high rewards.  
+
+**Batch Size: ** Batch size generalizes the information. Usually a bigger batch size is preferred because its sampling is more likely to represent the whole samples.  
+
+**REPLAY MEMORY: ** This parameter is key to the off-policy training. It stores state, action, reward, next_state as a form of tuple in a buffer. The agent won't start training/learning until its size reaches
+10000 in this case. There are several obvious advantages, such as more efficient of using data, changing reinforcement learning problem to a classification problem, more stable during training, etc.
+
+Unfortunately, from my experiments, these parameters seemed not to affect the performance too much. I would guess maybe the problem itself is simple enough. Hyper-parameters tuning in deep learning is really a tricky task and requires experience and even intuition.  
 
 ### Results:
 
@@ -113,7 +137,7 @@ the opportunities to explore the environment and collect possible rewards, no ma
 
 
 Result of Object 1, **accuracy > 90%**. As mentioned before, this task was easy and it only required the agent to control its base joint. The algorithm converged quickly, within 50 episodes.  
-![object1](./images/3.png)
+![object1](./images/6.png)
 
 
 Result of Object 2, **accuracy > 80%**. This task was harder. It took the agent about 140 episodes to reach 60% accuracy in my case. I kept it learning and was doing something else. After I came back, it finally reached 80%+ accuracy.  
@@ -121,7 +145,8 @@ Result of Object 2, **accuracy > 80%**. This task was harder. It took the agent 
 
 ### Future work:
 
-1. Try to complete the challenge task. 
-2. Even I completed the project with required accuracy, there are a lot of areas to improve. For example, reward system definitely can be improved to shorten the training time. How the control commands linked to
-the reward system need exploration too in the this environment. 
-3. I will revisit this project to gain more depth understandings in the simulation environment, the communications between ROS and DQN.  
+1. Apply velocity control as well to improve the performance. 
+2. Try to complete the challenge tasks. 
+3. Even I completed the project with required accuracy, there are a lot of areas to improve. For example, reward system definitely can be improved to shorten the training time. How the control commands linked to
+the reward system needs exploration too in the this environment.   
+4. I will revisit this project to gain more depth understandings in the simulation environment, the communications between ROS and DQN.  
